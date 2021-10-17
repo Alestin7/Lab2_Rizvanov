@@ -31,8 +31,10 @@ public class Rhombuses {
     public void MediumArea(){
         int medium = 0;
         for (Rhombus rhombus : this.rhombuses){
-
+            medium += (rhombus.Diagonal1()*rhombus.Diagonal2())/2;
         }
+        medium/=(int)Math.round(rhombuses.size());
+        System.out.println("\n\nСредняя площадь ромбов: " + medium);
     }
 
     @Override

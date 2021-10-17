@@ -6,12 +6,27 @@ public class Rhombus extends Quadrangle {
     }
 
     public static Rhombus generate(){
-        return new Rhombus(Point.generate(), Point.generate(), Point.generate(), Point.generate());
+        int x1, x2, x3, x4, y1, y2, y3, y4;
+        do {
+            x1 = Point.generate().getX();
+            y1 = Point.generate().getY();
+            x2 = Point.generate().getX();
+            y2 = Point.generate().getY();
+            x3 = Point.generate().getX();
+            y3 = Point.generate().getY();
+            x4 = Point.generate().getX();
+            y4 = Point.generate().getY();
+        } while (Rhombus.Check(x1,y1,x2,y2,x3,y3,x4,y4) == false);
+        return new Rhombus(new Point(x1,y1), new Point(x2, y2), new Point(x3, y3), new Point(x4,y4));
     }
 
-    public boolean Check(){
+    public static boolean Check(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4){
         boolean check = false;
-        if (Side1() == Side2() && Side2() == Side3() && Side3() == Side4()){
+        if (Math.sqrt(Math.pow((x2- x1), 2)+Math.pow((y2 - y1), 2)) == Math.sqrt(Math.pow((x3- x2), 2)+Math.pow((y3- y2), 2))
+                && Math.sqrt(Math.pow((x3- x2), 2)+Math.pow((y3- y2), 2)) == Math.sqrt(Math.pow((x4- x3), 2)+Math.pow((y4- y3), 2))
+                && Math.sqrt(Math.pow((x4- x3), 2)+Math.pow((y4- y3), 2)) == Math.sqrt(Math.pow((x4- x1), 2)+Math.pow((y4- y1), 2)) &&
+                Math.sqrt(Math.pow((x4- x2), 2)+Math.pow((y4- y2), 2)) != Math.sqrt(Math.pow((x3- x1), 2)+Math.pow((y3- y1), 2)) &&
+                Math.sqrt(Math.pow((x4- x2), 2)+Math.pow((y4- y2), 2)) != 0 && Math.sqrt(Math.pow((x3- x1), 2)+Math.pow((y3- y1), 2)) != 0){
             check = true;
         }
         return check;
@@ -33,7 +48,7 @@ public class Rhombus extends Quadrangle {
                 "\nДиагональ 1: " + Diagonal1() +
                 "\nДиагональ 2: " + Diagonal2() +
                 "\nПериметр: " + Perimetr() +
-                "\nПлощадь: " + Area() +
+                "\nПлощадь: " + (Diagonal2()*Diagonal1())/2 +
                 "\n}";
     }
 }
